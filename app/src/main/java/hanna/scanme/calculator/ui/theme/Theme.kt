@@ -6,6 +6,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import hanna.scanme.calculator.BuildConfig
+import hanna.scanme.calculator.domain.model.ThemeFlavor
 
 private val DarkColorPalette = darkColors(
     primary = Purple200, primaryVariant = Purple700, secondary = Teal200
@@ -40,13 +41,13 @@ private val RedColorPalette = lightColors(
 
 @Composable
 fun ScanMeCalculatorTheme(
-    flavor: String = BuildConfig.FLAVOR,
+    flavor: String = BuildConfig.FLAVOR_theme,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val colors = when  {
-        flavor.contains("red") -> RedColorPalette
-        flavor.contains("green") -> GreenColorPalette
+        flavor == ThemeFlavor.RED.name.lowercase() -> RedColorPalette
+        flavor == ThemeFlavor.GREEN.name.lowercase() -> GreenColorPalette
         darkTheme -> DarkColorPalette
         else -> LightColorPalette
     }
